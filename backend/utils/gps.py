@@ -1,7 +1,6 @@
 import exifread
 from PIL import Image
 from PIL.ExifTags import TAGS, GPSTAGS
-import piexif
 import io
 from typing import Optional, Tuple
 
