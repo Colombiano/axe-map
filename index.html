@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#8B4513" />
+    <meta name="background-color" content="#1a0a00" />
+    <meta name="description" content="Mapeamento colaborativo dos terreiros de Candomblé de Salvador, Bahia" />
+    <meta name="author" content="Axé Map" />
+    <meta name="keywords" content="candomble, terreiros, salvador, bahia, mapeamento, religiao, matriz africana" />
+    
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Axé Map" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="Axé Map" />
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-72x72.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-72x72.png" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Axé Map - Terreiros de Candomblé" />
+    <meta property="og:description" content="Mapeamento colaborativo dos terreiros de Candomblé de Salvador" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    
+    <title>Axé Map - Terreiros de Candomblé</title>
+    
+    <style>
+      /* Critical CSS for splash screen */
+      html, body, #root {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #1a0a00;
+      }
+      
+      /* Initial loading state */
+      #root:empty::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(135deg, #1a0a00 0%, #2d1a0a 100%);
+        z-index: 9999;
+      }
+      
+      #root:empty::after {
+        content: 'Axé Map';
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #c85a17;
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        z-index: 10000;
+        animation: pulse 1.5s ease-in-out infinite;
+      }
+      
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then(function(registration) {
+              console.log('Service Worker registered:', registration.scope);
+            })
+            .catch(function(error) {
+              console.log('Service Worker registration failed:', error);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>
