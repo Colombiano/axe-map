@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Axé Map - Warm Cultural Palette */
+    --background: 30 50% 6%;
+    --foreground: 30 20% 95%;
+    --card: 25 45% 10%;
+    --card-foreground: 30 20% 95%;
+    --popover: 25 45% 10%;
+    --popover-foreground: 30 20% 95%;
+    --primary: 25 75% 35%;
+    --primary-foreground: 30 20% 95%;
+    --secondary: 30 30% 18%;
+    --secondary-foreground: 30 20% 95%;
+    --muted: 30 20% 20%;
+    --muted-foreground: 30 10% 65%;
+    --accent: 35 80% 45%;
+    --accent-foreground: 30 20% 95%;
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 30 20% 95%;
+    --border: 25 30% 20%;
+    --input: 25 30% 20%;
+    --ring: 25 75% 35%;
+    --radius: 0.75rem;
+    --chart-1: 25 75% 35%;
+    --chart-2: 35 80% 45%;
+    --chart-3: 30 60% 40%;
+    --chart-4: 20 50% 30%;
+    --chart-5: 40 70% 50%;
+    --sidebar-background: 25 45% 8%;
+    --sidebar-foreground: 30 20% 95%;
+    --sidebar-primary: 25 75% 35%;
+    --sidebar-primary-foreground: 30 20% 95%;
+    --sidebar-accent: 30 30% 18%;
+    --sidebar-accent-foreground: 30 20% 95%;
+    --sidebar-border: 25 30% 20%;
+    --sidebar-ring: 25 75% 35%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.4);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.6);
+  }
+}
+
+@layer components {
+  /* Leaflet Map Customization */
+  .leaflet-container {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif !important;
+    background: #1a0a00 !important;
+  }
+
+  .leaflet-popup-content-wrapper {
+    background: hsl(var(--card)) !important;
+    color: hsl(var(--card-foreground)) !important;
+    border-radius: 0.75rem !important;
+    border: 1px solid hsl(var(--border)) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .leaflet-popup-tip {
+    background: hsl(var(--card)) !important;
+  }
+
+  .leaflet-popup-content {
+    margin: 12px !important;
+  }
+
+  .leaflet-control-zoom a {
+    background: hsl(var(--card)) !important;
+    color: hsl(var(--foreground)) !important;
+    border-color: hsl(var(--border)) !important;
+    transition: all 0.2s ease;
+  }
+
+  .leaflet-control-zoom a:hover {
+    background: hsl(var(--primary)) !important;
+    color: hsl(var(--primary-foreground)) !important;
+  }
+
+  /* Custom marker styles */
+  .custom-marker {
+    transition: transform 0.2s ease;
+  }
+
+  .custom-marker:hover {
+    transform: scale(1.2);
+  }
+
+  /* Dropzone */
+  .dropzone {
+    border: 2px dashed hsl(var(--border));
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .dropzone:hover,
+  .dropzone.active {
+    border-color: hsl(var(--primary));
+    background: hsl(var(--primary) / 0.05);
+  }
+
+  /* Animations */
+  .fade-in {
+    animation: fadeIn 0.4s ease-out;
+  }
+
+  .slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { 
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { 
+      box-shadow: 0 0 5px hsl(var(--primary) / 0.3);
+    }
+    50% { 
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.6);
+    }
+  }
+
+  /* Glass effect */
+  .glass {
+    background: hsl(var(--card) / 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Terreiro card */
+  .terreiro-card {
+    @apply rounded-xl border border-border bg-card p-4 transition-all duration-300;
+  }
+
+  .terreiro-card:hover {
+    @apply border-primary/40 shadow-lg;
+    transform: translateY(-2px);
+  }
+
+  /* Nation badges */
+  .nacao-ketu {
+    @apply bg-red-900/40 text-red-200 border border-red-700/50;
+  }
+
+  .nacao-jeje {
+    @apply bg-blue-900/40 text-blue-200 border border-blue-700/50;
+  }
+
+  .nacao-angola {
+    @apply bg-amber-900/40 text-amber-200 border border-amber-700/50;
+  }
+
+  .nacao-congo {
+    @apply bg-purple-900/40 text-purple-200 border border-purple-700/50;
+  }
+
+  .nacao-ijexa {
+    @apply bg-emerald-900/40 text-emerald-200 border border-emerald-700/50;
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 640px) {
+    .leaflet-control-zoom {
+      display: none;
+    }
+  }
+}
+
+/* Install prompt */
+.install-prompt {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  animation: slideUp 0.5s ease-out;
+}
